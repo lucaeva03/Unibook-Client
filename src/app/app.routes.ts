@@ -6,6 +6,9 @@ import { ProtectedLayout } from './layouts/protected-layout/protected-layout';
 import { Home } from './pages/home/home';
 import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
+import { Profile } from './pages/profile/profile';
+import { PublicProfile } from './pages/public-profile/public-profile';
+import { Search } from './pages/search/search';
 
 export const routes: Routes = [
   {
@@ -37,6 +40,18 @@ export const routes: Routes = [
         path: 'home',
         component: Home,
       },
+      {
+        path: 'profile',
+        component: Profile,
+      },
+      {
+        path: 'profile/:id',
+        component: PublicProfile,
+      },
+      {
+        path: 'search',
+        component: Search,
+      }
     ],
   },
   {
