@@ -1,0 +1,128 @@
+<section class="profile-page">
+
+  @if (isLoading()) {
+    <p class="status-box" role="status">Caricamento profilo...</p>
+  } @else if (error()) {
+    <div class="status-box status-box--error" role="alert">
+      <p>{{ error() }}</p>
+    </div>
+  } @else if (isEmpty()) {
+    <p class="status-box" role="status">Nessun dato disponibile.</p>
+  } @else if (user(); as user) {
+
+    <header class="panel">
+      <p class="eyebrow">Il tuo profilo</p>
+      <div class="profile-header">
+        @if (user.avatarUrl) {
+          <img class="profile-avatar" [src]="user.avatarUrl" [alt]="user.firstName + ' ' + user.lastName" />
+        } @else {
+          <div class="profile-avatar profile-avatar--placeholder">
+            {{ user.firstName[0] }}{{ user.lastName[0] }}
+          </div>
+        }
+        <div>
+          <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+          <p class="profile-email">{{ user.email }}</p>
+        </div>
+      </div>
+
+      <dl class="profile-stats">
+        <div>
+          <dt>Follower</dt>
+          <dd>{{ user.followersCount }}</dd>
+        </div>
+        <div>
+          <dt>Seguiti</dt>
+          <dd>{{ user.followingCount }}</dd>
+        </div>
+        <div>
+          <dt>Data di nascita</dt>
+          <dd>{{ user.birthDate }}</dd>
+        </div>
+      </dl>
+
+      @if (user.bio) {
+        <p class="profile-bio">{{ user.bio }}</p>
+      }
+    </header>
+
+    <section class="panel">
+      <h2>Modifica profilo</h2>
+
+      <form class="edit-form" [formRoot]="form">
+        <label>
+          <span>Bio</span>
+          <textarea
+            [formField]="form.bio"
+            placeholder="Scrivi qualcosa su di te..."
+            rows="3"
+          ></textarea>
+        </label>
+
+        <label>
+          <span>Foto profilo</span>
+          <input type="file" accept="image/*" (change)="onAvatarSelected($event)" />
+        </label>
+
+        @if (fileError()) {
+          <div class="field-errors">
+            <p class="inline-error" role="alert">{{ fileError() }}</p>
+          </div>
+        }
+
+        @if (form().errors().length) {
+          <div class="field-errors">
+            @for (error of form().errors(); track error) {
+              <p class="inline-error" role="alert">
+                {{ error.message ?? 'Aggiornamento non riuscito.' }}
+              </p>
+            }
+          </div>
+        }
+
+        <button type="submit" class="button-primary" [disabled]="form().submitting() || uploading()">
+          {{ uploading() ? 'Upload in corso...' : form().submitting() ? 'Salvataggio...' : 'Salva modifiche' }}
+        </button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>I tuoi post</h2>
+
+      @if (isPostsEmpty()) {
+        <p class="status-box" role="status">Non hai ancora pubblicato nessun post.</p>
+      } @else {
+        <div class="posts-list">
+          @for (post of posts(); track post.id) {
+            <article class="post-card">
+              <div class="post-card__meta">
+                <p class="post-card__date">{{ post.createdAt }}</p>
+                <button
+                  type="button"
+                  class="button-delete"
+                  (click)="deletePost(post.id)"
+                >
+                  Elimina
+                </button>
+              </div>
+
+              <p class="post-card__text">{{ post.text }}</p>
+
+              @if (post.imageUrl) {
+                <img
+                  class="post-card__image"
+                  [src]="post.imageUrl"
+                  [alt]="'Immagine del post'"
+                />
+              }
+
+              <p class="post-card__likes">{{ post.likesCount }} like</p>
+            </article>
+          }
+        </div>
+      }
+    </section>
+
+  }
+
+</section>
