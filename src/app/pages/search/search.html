@@ -1,0 +1,69 @@
+<section class="search-page">
+
+  <header class="panel">
+    <p class="eyebrow">Esplora</p>
+    <h1>Cerca utenti</h1>
+    <p class="search-subtitle">Cerca altri studenti per nome o cognome.</p>
+  </header>
+
+  <div class="panel">
+    <!-- Form di ricerca: submit gestisce anche la pressione di Enter -->
+    <form class="search-form" (submit)="onSearch(); $event.preventDefault()">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Nome o cognome..."
+        [value]="query()"
+        (input)="onQueryChange($event)"
+      />
+      <button type="submit" class="button-primary" [disabled]="isLoading()">
+        {{ isLoading() ? 'Ricerca...' : 'Cerca' }}
+      </button>
+    </form>
+  </div>
+
+  <!-- Stato iniziale: l'utente non ha ancora cercato nulla -->
+  @if (!hasSearched()) {
+    <p class="status-box" role="status">
+      Inserisci un nome o cognome per cercare altri utenti.
+    </p>
+  } @else if (isLoading()) {
+    <p class="status-box" role="status">Ricerca in corso...</p>
+  } @else if (error()) {
+    <div class="status-box status-box--error" role="alert">
+      <p>{{ error() }}</p>
+    </div>
+  } @else if (isEmpty()) {
+    <p class="status-box" role="status">Nessun utente trovato per "{{ query() }}".</p>
+  } @else {
+    <!-- Lista risultati -->
+    <ul class="results-list">
+      @for (user of results(); track user.id) {
+        <li class="result-card">
+
+          @if (user.avatarUrl) {
+            <img
+              class="result-avatar"
+              [src]="user.avatarUrl"
+              [alt]="user.firstName + ' ' + user.lastName"
+            />
+          } @else {
+            <div class="result-avatar result-avatar--placeholder">
+              {{ user.firstName[0] }}{{ user.lastName[0] }}
+            </div>
+          }
+
+          <div class="result-info">
+            <p class="result-name">{{ user.firstName }} {{ user.lastName }}</p>
+          </div>
+
+          <a class="button-secondary" [routerLink]="['/profile', user.id]">
+            Vedi profilo
+          </a>
+
+        </li>
+      }
+    </ul>
+  }
+
+</section>
