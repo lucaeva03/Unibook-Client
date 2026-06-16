@@ -213,3 +213,45 @@ ul {
     justify-items: start;
   }
 }
+
+/* Stili per il form di creazione post */
+.post-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.post-form label {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.post-form span {
+  color: #334155;
+  font-size: 0.94rem;
+  font-weight: 600;
+}
+
+textarea {
+  font: inherit;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 0.95rem;
+  padding: 0.9rem 1rem;
+  background: rgba(255, 255, 255, 0.92);
+  resize: vertical;
+}
+
+textarea.is-invalid {
+  border-color: rgba(185, 28, 28, 0.55);
+  background: rgba(254, 242, 242, 0.95);
+}
+
+.field-errors {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.inline-error {
+  margin: 0;
+  color: #b91c1c;
+  font-size: 0.94rem;
+}
