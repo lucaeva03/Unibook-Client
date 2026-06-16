@@ -1,0 +1,109 @@
+<section class="public-profile-page">
+
+  @if (isLoading()) {
+    <p class="status-box" role="status">Caricamento profilo...</p>
+  } @else if (error()) {
+    <div class="status-box status-box--error" role="alert">
+      <p>{{ error() }}</p>
+    </div>
+  } @else if (isEmpty()) {
+    <p class="status-box" role="status">Profilo non trovato.</p>
+  } @else if (profile(); as profile) {
+
+    <!-- Dati del profilo pubblico -->
+    <header class="panel">
+      <div class="profile-header">
+
+        @if (profile.avatarUrl) {
+          <img
+            class="profile-avatar"
+            [src]="profile.avatarUrl"
+            [alt]="profile.firstName + ' ' + profile.lastName"
+          />
+        } @else {
+          <div class="profile-avatar profile-avatar--placeholder">
+            {{ profile.firstName[0] }}{{ profile.lastName[0] }}
+          </div>
+        }
+
+        <div class="profile-info">
+          <h1>{{ profile.firstName }} {{ profile.lastName }}</h1>
+
+          @if (profile.bio) {
+            <p class="profile-bio">{{ profile.bio }}</p>
+          }
+
+          <!-- Bottone follow/unfollow: cambia in base allo stato isFollowing -->
+          @if (profile.isFollowing) {
+            <button
+              type="button"
+              class="button-unfollow"
+              [disabled]="followLoading()"
+              (click)="onUnfollow()"
+            >
+              {{ followLoading() ? 'Attendere...' : 'Non seguire più' }}
+            </button>
+          } @else {
+            <button
+              type="button"
+              class="button-follow"
+              [disabled]="followLoading()"
+              (click)="onFollow()"
+            >
+              {{ followLoading() ? 'Attendere...' : 'Segui' }}
+            </button>
+          }
+        </div>
+
+      </div>
+
+      <!-- Statistiche follower e seguiti -->
+      <dl class="profile-stats">
+        <div>
+          <dt>Follower</dt>
+          <dd>{{ profile.followersCount }}</dd>
+        </div>
+        <div>
+          <dt>Seguiti</dt>
+          <dd>{{ profile.followingCount }}</dd>
+        </div>
+      </dl>
+    </header>
+
+    <!-- Lista post dell'utente -->
+    <section class="panel">
+      <h2>Post di {{ profile.firstName }}</h2>
+
+      @if (isPostsEmpty()) {
+        <p class="status-box" role="status">
+          {{ profile.firstName }} non ha ancora pubblicato nessun post.
+        </p>
+      } @else {
+        <div class="posts-list">
+          @for (post of posts(); track post.id) {
+            <article class="post-card">
+
+              <div class="post-card__meta">
+                <p class="post-card__date">{{ post.createdAt }}</p>
+                <p class="post-card__likes">{{ post.likesCount }} like</p>
+              </div>
+
+              <p class="post-card__text">{{ post.text }}</p>
+
+              @if (post.imageUrl) {
+                <img
+                  class="post-card__image"
+                  [src]="post.imageUrl"
+                  alt="Immagine del post"
+                />
+              }
+
+            </article>
+          }
+        </div>
+      }
+    </section>
+
+  }
+
+</section>
