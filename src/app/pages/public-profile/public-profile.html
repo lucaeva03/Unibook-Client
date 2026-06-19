@@ -81,24 +81,11 @@
       } @else {
         <div class="posts-list">
           @for (post of posts(); track post.id) {
-            <article class="post-card">
-
-              <div class="post-card__meta">
-                <p class="post-card__date">{{ post.createdAt }}</p>
-                <p class="post-card__likes">{{ post.likesCount }} like</p>
-              </div>
-
-              <p class="post-card__text">{{ post.text }}</p>
-
-              @if (post.imageUrl) {
-                <img
-                  class="post-card__image"
-                  [src]="post.imageUrl"
-                  alt="Immagine del post"
-                />
-              }
-
-            </article>
+            <app-post-card
+              [post]="post"
+              [showDelete]="false"
+              (likeToggled)="onLikeToggled($event)"
+            />
           }
         </div>
       }

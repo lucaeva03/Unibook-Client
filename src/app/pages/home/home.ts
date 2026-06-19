@@ -5,8 +5,10 @@ import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../core/auth/auth.service';
 import { MediaApiService } from '../../core/api/media-api.service';
 import { PostsApiService } from '../../core/api/posts-api.service';
+import { Post } from '../../core/api/models/post.types';
 import { extractHttpErrorMessage } from '../../core/http/extract-http-error-message';
 import { FeedService } from './feed.service';
+import { PostCard } from '../../shared/post-card/post-card';
 
 // Interfaccia che descrive i campi del form di creazione post
 interface CreatePostModel {
@@ -15,7 +17,7 @@ interface CreatePostModel {
 
 @Component({
   selector: 'app-home',
-  imports: [FormField, FormRoot],
+  imports: [FormField, FormRoot, PostCard],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -134,5 +136,10 @@ export class Home implements OnInit {
 
     this.selectedImage.set(file);
     this.fileError.set(null);
+  }
+
+  // Aggiorna il post nel feed dopo like o unlike
+  protected onLikeToggled(updated: Post): void {
+    this.feedService.updatePost(updated);
   }
 }

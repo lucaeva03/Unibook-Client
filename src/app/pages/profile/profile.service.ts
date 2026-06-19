@@ -81,4 +81,11 @@ export class ProfileService {
   removePost(postId: string): void {
     this.postsState.update((posts) => posts.filter((p) => p.id !== postId));
   }
+
+  // Aggiorna un singolo post nella lista dopo like o unlike
+  updatePost(updated: Post): void {
+    this.postsState.update((posts) =>
+      posts.map((p) => (p.id === updated.id ? updated : p)),
+    );
+  }
 }

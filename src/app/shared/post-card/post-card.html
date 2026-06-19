@@ -1,0 +1,63 @@
+<article class="post-card">
+
+  <!-- Intestazione: avatar e nome autore a sinistra, data a destra -->
+  <div class="post-card__header">
+    <div class="post-card__author">
+      @if (post().author.avatarUrl) {
+        <img
+          class="post-card__avatar"
+          [src]="post().author.avatarUrl"
+          [alt]="post().author.firstName + ' ' + post().author.lastName"
+        />
+      } @else {
+        <div class="post-card__avatar post-card__avatar--placeholder">
+          {{ post().author.firstName[0] }}{{ post().author.lastName[0] }}
+        </div>
+      }
+      <span class="post-card__name">
+        {{ post().author.firstName }} {{ post().author.lastName }}
+      </span>
+    </div>
+    <p class="post-card__date">{{ post().createdAt }}</p>
+  </div>
+
+  <!-- Testo del post -->
+  <p class="post-card__text">{{ post().text }}</p>
+
+  <!-- Immagine opzionale -->
+  @if (post().imageUrl) {
+    <img
+      class="post-card__image"
+      [src]="post().imageUrl"
+      alt="Immagine del post"
+    />
+  }
+
+  <!-- Footer: like e bottone elimina -->
+  <div class="post-card__footer">
+
+    <!-- Bottone like/unlike con contatore -->
+    <button
+      type="button"
+      class="post-card__like-btn"
+      [class.post-card__like-btn--liked]="post().isLiked"
+      [disabled]="likeLoading()"
+      (click)="onToggleLike()"
+    >
+      {{ post().isLiked ? '♥️' : '🤍' }} {{ post().likesCount }}
+    </button>
+
+    <!-- Bottone elimina: visibile solo se showDelete è true -->
+    @if (showDelete()) {
+      <button
+        type="button"
+        class="post-card__delete-btn"
+        (click)="onDelete()"
+      >
+        Elimina
+      </button>
+    }
+
+  </div>
+
+</article>

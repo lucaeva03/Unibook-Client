@@ -109,4 +109,11 @@ export class PublicProfileService {
       this.followLoadingState.set(false);
     }
   }
+
+  // Aggiorna un singolo post nella lista dopo like o unlike
+  updatePost(updated: Post): void {
+    this.postsState.update((posts) =>
+      posts.map((p) => (p.id === updated.id ? updated : p)),
+    );
+  }
 }

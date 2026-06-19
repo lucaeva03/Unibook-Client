@@ -5,9 +5,11 @@ import { firstValueFrom } from 'rxjs';
 import { UsersApiService } from '../../core/api/users-api.service';
 import { MediaApiService } from '../../core/api/media-api.service';
 import { PostsApiService } from '../../core/api/posts-api.service';
+import { Post } from '../../core/api/models/post.types';
 import { AuthService } from '../../core/auth/auth.service';
 import { extractHttpErrorMessage } from '../../core/http/extract-http-error-message';
 import { ProfileService } from './profile.service';
+import { PostCard } from '../../shared/post-card/post-card';
 
 // Interfaccia che descrive i campi del form di modifica profilo
 interface EditProfileModel {
@@ -16,7 +18,7 @@ interface EditProfileModel {
 
 @Component({
   selector: 'app-profile',
-  imports: [FormField, FormRoot],
+  imports: [FormField, FormRoot, PostCard],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
 })
@@ -129,6 +131,11 @@ export class Profile implements OnInit {
 
     this.selectedAvatar.set(file);
     this.fileError.set(null);
+  }
+
+  // Aggiorna il post nella lista dopo like o unlike
+  protected onLikeToggled(updated: Post): void {
+    this.profileService.updatePost(updated);
   }
 
   // Elimina un post: chiama l'API e aggiorna la lista locale

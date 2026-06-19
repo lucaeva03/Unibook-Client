@@ -2,11 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthService } from '../../core/auth/auth.service';
+import { Post } from '../../core/api/models/post.types';
 import { PublicProfileService } from './public-profile.service';
+import { PostCard } from '../../shared/post-card/post-card';
 
 @Component({
   selector: 'app-public-profile',
-  imports: [],
+  imports: [PostCard],
   templateUrl: './public-profile.html',
   styleUrl: './public-profile.css',
 })
@@ -57,5 +59,10 @@ export class PublicProfile implements OnInit {
   // Chiama il service per smettere di seguire l'utente
   protected async onUnfollow(): Promise<void> {
     await this.publicProfileService.unfollow(this.userId);
+  }
+
+  // Aggiorna il post nella lista dopo like o unlike
+  protected onLikeToggled(updated: Post): void {
+    this.publicProfileService.updatePost(updated);
   }
 }
