@@ -119,7 +119,7 @@
                 [post]="post"
                 [showDelete]="post.author.id === currentUser()?.id"
                 (likeToggled)="onLikeToggled($event)"
-                (deleted)="reloadFeed()"
+                (deleted)="deletePost($event)"
               />
             }
           </div>

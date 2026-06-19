@@ -142,4 +142,14 @@ export class Home implements OnInit {
   protected onLikeToggled(updated: Post): void {
     this.feedService.updatePost(updated);
   }
+
+  // Elimina un post e ricarica il feed per mostrare la rimozione
+  protected async deletePost(postId: string): Promise<void> {
+    try {
+      await firstValueFrom(this.postsApi.remove(postId));
+      this.feedService.loadFeed();
+    } catch {
+      // Errore silenzioso, l'utente può riprovare
+    }
+  }
 }
