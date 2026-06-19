@@ -2,7 +2,7 @@
   @if (currentUser(); as user) {
 
     <header class="panel panel--full">
-      <p class="eyebrow">Home</p>
+      <p class="section-heading">🏠 Home</p>
       <h1>Ciao, {{ user.firstName }}</h1>
       <p class="copy">
         Qui trovi il feed personale con i post tuoi e delle persone che segui.
@@ -13,7 +13,7 @@
 
       <!-- Form di creazione post -->
       <section class="panel panel--full" aria-labelledby="create-post-heading">
-        <h2 id="create-post-heading">Nuovo post</h2>
+        <h2 id="create-post-heading" class="section-heading">✏️ Nuovo post</h2>
 
         <form class="post-form" [formRoot]="postForm">
 
@@ -75,7 +75,7 @@
       <section class="panel panel--full" aria-labelledby="feed-heading" [attr.aria-busy]="isFeedLoading()">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">Feed</p>
+            <p id="feed-heading" class="section-heading">📰 Feed</p>
             <h2 id="feed-heading">Aggiornamenti recenti</h2>
           </div>
           <button

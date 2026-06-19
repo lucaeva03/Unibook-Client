@@ -13,7 +13,7 @@
 
 .eyebrow {
   margin: 0 0 0.5rem;
-  color: #0f766e;
+  color: #4f46e5;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-size: 0.75rem;
@@ -52,7 +52,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #0f766e, #14b8a6);
+  background: linear-gradient(135deg, #4f46e5, #818cf8);
   color: white;
   font-size: 1.4rem;
   font-weight: 800;
@@ -139,7 +139,7 @@ input[type='file'] {
   cursor: pointer;
   font-weight: 800;
   color: white;
-  background: linear-gradient(135deg, #0f766e, #14b8a6);
+  background: linear-gradient(135deg, #4f46e5, #818cf8);
 }
 
 .button-primary:disabled {
@@ -229,6 +229,15 @@ input[type='file'] {
 
 .button-delete:hover {
   background: rgba(185, 28, 28, 0.15);
+}
+
+.section-heading {
+  margin: 0 0 1rem;
+  color: #4f46e5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  font-weight: 800;
 }
 
 @media (max-width: 720px) {

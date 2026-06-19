@@ -11,7 +11,7 @@
   } @else if (user(); as user) {
 
     <header class="panel">
-      <p class="eyebrow">Il tuo profilo</p>
+      <p class="section-heading">👤 Il tuo profilo</p>
       <div class="profile-header">
         @if (user.avatarUrl) {
           <img class="profile-avatar" [src]="user.avatarUrl" [alt]="user.firstName + ' ' + user.lastName" />
@@ -47,7 +47,7 @@
     </header>
 
     <section class="panel">
-      <h2>Modifica profilo</h2>
+      <h2 class="section-heading">✏️ Modifica profilo</h2>
 
       <form class="edit-form" [formRoot]="form">
         <label>
@@ -87,7 +87,7 @@
     </section>
 
     <section class="panel">
-      <h2>I tuoi post</h2>
+      <h2 class="section-heading">📝 I tuoi post</h2>
 
       @if (isPostsEmpty()) {
         <p class="status-box" role="status">Non hai ancora pubblicato nessun post.</p>

@@ -1,15 +1,23 @@
 <div class="app-shell">
   <header class="app-header">
-    <a class="brand" routerLink="/home">UniBook Starter</a>
+    <a class="brand" routerLink="/home">#️⃣UNIBOOK</a>
 
     <nav class="app-nav" aria-label="Navigazione principale">
-      <a routerLink="/home" routerLinkActive="nav-link--active" class="nav-link">Home</a>
-      <a routerLink="/search" routerLinkActive="nav-link--active" class="nav-link">Cerca</a>
-      <a routerLink="/profile" routerLinkActive="nav-link--active" class="nav-link">Profilo</a>
+      <a routerLink="/home" routerLinkActive="nav-link--active" class="nav-link">
+        <span class="nav-link__icon" aria-hidden="true">🏠</span> Home
+      </a>
+      <a routerLink="/search" routerLinkActive="nav-link--active" class="nav-link">
+        <span class="nav-link__icon" aria-hidden="true">🔍</span> Cerca
+      </a>
+      <a routerLink="/profile" routerLinkActive="nav-link--active" class="nav-link">
+        <span class="nav-link__icon" aria-hidden="true">👤</span> Profilo
+      </a>
       @if (currentUser(); as user) {
-      <p class="user-chip">{{ user.firstName }} {{ user.lastName }}</p>
+        <p class="user-chip">{{ user.firstName }} {{ user.lastName }}</p>
       }
-      <button type="button" class="logout-button" (click)="logout()">Logout</button>
+      <button type="button" class="logout-button" (click)="logout()">
+        <span class="nav-link__icon" aria-hidden="true">🚪</span> Logout
+      </button>
     </nav>
   </header>
 

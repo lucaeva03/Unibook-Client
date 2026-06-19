@@ -15,7 +15,7 @@
 
 .eyebrow {
   margin: 0 0 0.5rem;
-  color: #0f766e;
+  color: #4f46e5;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-size: 0.75rem;
@@ -81,7 +81,7 @@ input.is-invalid {
   cursor: pointer;
   font-weight: 800;
   color: white;
-  background: linear-gradient(135deg, #0f766e, #1d4ed8);
+  background: linear-gradient(135deg, #4f46e5, #818cf8);
 }
 
 .primary-button:disabled {
@@ -90,6 +90,15 @@ input.is-invalid {
 }
 
 a {
-  color: #0f766e;
+  color: #4f46e5;
+  font-weight: 800;
+}
+
+.section-heading {
+  margin: 0 0 1rem;
+  color: #4f46e5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 1.05rem;
   font-weight: 800;
 }

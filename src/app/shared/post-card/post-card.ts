@@ -3,6 +3,7 @@ import { firstValueFrom } from 'rxjs';
 
 import { PostsApiService } from '../../core/api/posts-api.service';
 import { Post } from '../../core/api/models/post.types';
+import { formatPostDate } from '../format-date';
 
 @Component({
   selector: 'app-post-card',
@@ -55,5 +56,10 @@ export class PostCard {
   // Emette l'id del post verso il componente padre che gestirà l'eliminazione
   protected onDelete(): void {
     this.deleted.emit(this.post().id);
+  }
+
+  // Espone la data formattata al template
+  protected formattedDate(): string {
+    return formatPostDate(this.post().createdAt);
   }
 }

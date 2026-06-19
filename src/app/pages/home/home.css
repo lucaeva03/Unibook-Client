@@ -13,7 +13,7 @@
 
 .eyebrow {
   margin: 0 0 0.5rem;
-  color: #0f766e;
+  color: #4f46e5;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-size: 0.75rem;
@@ -98,7 +98,7 @@ ul {
   font: inherit;
   font-weight: 700;
   color: #ffffff;
-  background: linear-gradient(135deg, #0f766e, #14b8a6);
+  background: linear-gradient(135deg, #4f46e5, #818cf8);
   cursor: pointer;
 }
 
@@ -109,7 +109,7 @@ ul {
 
 .status-inline {
   margin: 0 0 1rem;
-  color: #0f766e;
+  color: #4f46e5;
   font-weight: 700;
 }
 
@@ -177,7 +177,7 @@ ul {
 }
 
 .feed-card__liked {
-  color: #0f766e;
+  color: #4f46e5;
 }
 
 .feed-card__text {
@@ -254,4 +254,13 @@ textarea.is-invalid {
   margin: 0;
   color: #b91c1c;
   font-size: 0.94rem;
+}
+
+.section-heading {
+  margin: 0 0 1rem;
+  color: #4f46e5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  font-weight: 800;
 }

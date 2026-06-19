@@ -18,7 +18,7 @@
         {{ post().author.firstName }} {{ post().author.lastName }}
       </span>
     </div>
-    <p class="post-card__date">{{ post().createdAt }}</p>
+    <p class="post-card__date">{{ formattedDate() }}</p>
   </div>
 
   <!-- Testo del post -->

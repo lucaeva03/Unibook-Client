@@ -34,7 +34,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #0f766e, #14b8a6);
+  background: linear-gradient(135deg, #4f46e5, #818cf8);
   color: white;
   font-size: 0.8rem;
   font-weight: 800;
@@ -90,9 +90,9 @@
 
 /* Stato attivo del like */
 .post-card__like-btn--liked {
-  color: #be123c;
-  border-color: rgba(190, 18, 60, 0.2);
-  background: rgba(190, 18, 60, 0.05);
+  color: #f43f5e;
+  border-color: rgba(244, 63, 94, 0.2);
+  background: rgba(244, 63, 94, 0.06);
 }
 
 .post-card__like-btn:disabled {
