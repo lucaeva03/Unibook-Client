@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Manager</title>
+
+  <!-- Font Google: Manrope per i titoli, Inter per il corpo del testo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- Intestazione -->
+    <header class="app-header">
+      <h1 class="app-title">Contact Manager</h1>
+      <p class="app-subtitle">A simple directory for your connections</p>
+    </header>
+
+    <!-- Form per aggiungere un nuovo contatto -->
+    <section class="card form-card">
+      <h2 class="section-title">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M19 8v6M16 11h6"></path>
+        </svg>
+        Add New Contact
+      </h2>
+
+      <form id="contact-form" class="contact-form">
+        <div class="form-field form-field--full">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Leanne Graham" required />
+        </div>
+
+        <div class="form-field">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Bret" required />
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Sincere@april.biz" required />
+        </div>
+
+        <div class="form-field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" placeholder="1-770-736-8031" />
+        </div>
+
+        <div class="form-field">
+          <label for="website">Website</label>
+          <input type="text" id="website" placeholder="hildegard.org" />
+        </div>
+
+        <div class="form-field form-field--full form-field--separated">
+          <label for="company">Company Name</label>
+          <input type="text" id="company" placeholder="Romaguera-Crona" />
+        </div>
+
+        <div class="form-field">
+          <label for="catchphrase">Catchphrase</label>
+          <input type="text" id="catchphrase" placeholder="Multi-layered client-server" />
+        </div>
+
+        <div class="form-field">
+          <label for="bs">BS</label>
+          <input type="text" id="bs" placeholder="harness real-time markets" />
+        </div>
+
+        <div class="form-field form-field--full">
+          <button type="submit" class="button-primary">Save Contact</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Elenco contatti -->
+    <section class="contacts-section">
+      <h2 class="section-title">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        Directory
+      </h2>
+
+      <!-- Stato di caricamento -->
+      <p id="loading-message" class="status-message">Caricamento contatti...</p>
+
+      <!-- Stato vuoto (nessun contatto) -->
+      <p id="empty-message" class="status-message" hidden>Nessun contatto trovato.</p>
+
+      <!-- Lista contatti, popolata da script.js -->
+      <div id="contacts-list" class="contacts-list"></div>
+    </section>
+
+    <footer class="app-footer">
+      <p>Curator Contacts © 2026</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
